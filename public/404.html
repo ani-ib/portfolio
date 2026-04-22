@@ -1,7 +1,7 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>Ishani Budhwar - Portfolio</title>
     <script type="text/javascript">
       <!--
@@ -17,12 +17,10 @@
       // Note: this 404.html file must be at least 512 bytes for it to work
       // with Internet Explorer (it is currently > 512 bytes)
 
-      // If you're creating a Project Pages site and NOT using a custom domain,
-      // then set pathSegmentsToKeep to 1 (enterprise users may need to set it to > 1).
-      // This way the code will only replace the route part and not the real directory.
-      // For example, if your repository is 'my-repo' and you're using 'username.github.io/my-repo',
-      // then set pathSegmentsToKeep to 1.
-      // If you're using a custom domain, set pathSegmentsToKeep to 0.
+      // If your app is not served from the root, change the pathSegmentsToKeep variable to the number of path segments to keep.
+      // E.g. 1: if your app is served from https://www.foo.tld/app/ then set pathSegmentsToKeep to 1
+      // E.g. 2: if your app is served from https://www.foo.tld/app/v1/ then set pathSegmentsToKeep to 2
+
       var pathSegmentsToKeep = 1;
 
       var l = window.location;
@@ -33,9 +31,7 @@
         (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
         l.hash
       );
-
     </script>
   </head>
-  <body>
-  </body>
+  <body></body>
 </html>
