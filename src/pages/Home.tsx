@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Home() {
   return (
     <div className="max-w-6xl mx-auto">
@@ -21,18 +23,18 @@ export default function Home() {
 
             {/* CTA Buttons */}
             <div className="flex gap-4 flex-wrap">
-              <a
-                href="/projects"
+              <Link
+                to="/projects"
                 className="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-500 text-white font-semibold rounded-lg hover:shadow-lg transform hover:scale-105 transition-all"
               >
                 View My Work
-              </a>
-              <a
-                href="/contact"
+              </Link>
+              <Link
+                to="/contact"
                 className="px-8 py-3 border-2 border-blue-600 dark:border-blue-400 text-blue-600 dark:text-blue-400 font-semibold rounded-lg hover:bg-blue-50 dark:hover:bg-gray-800 transition-colors"
               >
                 Get in Touch
-              </a>
+              </Link>
             </div>
 
             {/* Stats */}
@@ -121,12 +123,12 @@ export default function Home() {
             Let's collaborate to build something amazing. I'm always excited to
             work on new and challenging projects.
           </p>
-          <a
-            href="/contact"
+          <Link
+            to="/contact"
             className="inline-block px-8 py-3 bg-white text-blue-600 font-bold rounded-lg hover:shadow-lg transform hover:scale-105 transition-all"
           >
             Start a Conversation
-          </a>
+          </Link>
         </div>
       </section>
     </div>

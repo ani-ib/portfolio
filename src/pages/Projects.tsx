@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Projects() {
   const [selectedCategory, setSelectedCategory] = useState("all");
@@ -169,12 +170,12 @@ export default function Projects() {
               opportunities, I'm always interested in hearing about new
               challenges.
             </p>
-            <a
-              href="/contact"
+            <Link
+              to="/contact"
               className="inline-block px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-500 text-white font-semibold rounded-lg hover:shadow-lg transform hover:scale-105 transition-all"
             >
               Let's Talk
-            </a>
+            </Link>
           </div>
         </div>
       </section>

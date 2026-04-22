@@ -1,5 +1,13 @@
+import { Link } from "react-router-dom";
+
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const navLinks = [
+    { to: "/", label: "Home" },
+    { to: "/about", label: "About" },
+    { to: "/projects", label: "Projects" },
+    { to: "/contact", label: "Contact" },
+  ];
 
   return (
     <footer className="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 mt-20">
@@ -22,14 +30,14 @@ export default function Footer() {
               Navigation
             </h4>
             <ul className="space-y-2">
-              {["Home", "About", "Projects", "Contact"].map((link) => (
-                <li key={link}>
-                  <a
-                    href={link == "Home" ? "./" : `./${link.toLowerCase()}`}
+              {navLinks.map((link) => (
+                <li key={link.to}>
+                  <Link
+                    to={link.to}
                     className="text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 text-sm transition-colors"
                   >
-                    {link}
-                  </a>
+                    {link.label}
+                  </Link>
                 </li>
               ))}
             </ul>
