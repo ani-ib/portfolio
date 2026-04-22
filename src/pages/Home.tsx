@@ -38,19 +38,19 @@ export default function Home() {
             {/* Stats */}
             <div className="flex gap-8 mt-12 flex-wrap">
               <div>
-                <p className="text-3xl font-bold text-blue-600">4+</p>
+                <p className="text-3xl font-bold text-blue-600">3+</p>
                 <p className="text-gray-600 dark:text-gray-400">
                   Years of Experience
                 </p>
               </div>
               <div>
-                <p className="text-3xl font-bold text-purple-500">5 Major</p>
+                <p className="text-3xl font-bold text-purple-500">4 Major</p>
                 <p className="text-gray-600 dark:text-gray-400">
                   Projects & Internships
                 </p>
               </div>
               <div>
-                <p className="text-3xl font-bold text-blue-600">6</p>
+                <p className="text-3xl font-bold text-blue-600">Multiple</p>
                 <p className="text-gray-600 dark:text-gray-400">
                   Programming Languages
                 </p>
