@@ -100,7 +100,7 @@ export default function Home() {
             >
               <div className="text-4xl mb-4">{category.icon}</div>
               <h3 className="text-xl font-bold mb-4">{category.title}</h3>
-              <ul className="space-y-2 flex flex-wrap gap-2">
+              <ul className="flex flex-wrap gap-2">
                 {category.skills.map((skill) => (
                   <li
                     key={skill}
