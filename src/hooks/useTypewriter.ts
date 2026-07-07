@@ -39,5 +39,5 @@ export function useTypewriter({
     }
   }, [text, isTyping, index, texts, typingSpeed, erasingSpeed, holdDelay]);
 
-  return { text, isTyping };
+  return { text };
 }

@@ -38,7 +38,7 @@ export default function Footer() {
               <span className="font-bold text-slate-900 dark:text-white">Ishani Budhwar</span>
             </div>
             <p className="text-slate-500 dark:text-slate-400 text-sm max-w-xs">
-              M.Sc. Informatics student at TUM. Building thoughtful digital experiences across the full stack.
+              M.Sc. Information Systems student at TUM (from Oct 2026). Building thoughtful digital experiences across the full stack.
             </p>
           </div>
 

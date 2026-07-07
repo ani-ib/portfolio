@@ -42,7 +42,6 @@ const skillCategories = [
   },
 ];
 
-
 export default function Home() {
   const { text } = useTypewriter({
     texts: ['Full-Stack Developer', 'iOS & AR Developer', 'CS Graduate at TUM', 'Problem Solver'],
