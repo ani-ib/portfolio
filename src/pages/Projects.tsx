@@ -1,183 +1,241 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+import AnimatedSection from '../components/AnimatedSection';
+
+const projects = [
+  {
+    id: 1,
+    title: 'TUMApply: Inclusive Doctoral Application Platform',
+    category: 'fullstack',
+    description:
+      "Bachelor's thesis project developing an inclusive web platform to replace TUM's doctoral application portal. Focus on accessibility, transparency, and improved user experience for both professors and students.",
+    technologies: ['Full-Stack Web Development', 'Accessibility', 'UX Design', 'User-Centered Design'],
+    icon: '🎓',
+    accentFrom: 'from-blue-500',
+    accentTo: 'to-violet-500',
+    codePreview: ['const platform =', '  new TUMApply({', '    a11y: true,', '    ux: "inclusive"', '  });'],
+  },
+  {
+    id: 2,
+    title: 'AR Car Rental Upselling App',
+    category: 'frontend',
+    description:
+      'Built with a team of 7 at SIXT: an Augmented Reality iOS application for car rental upselling. Integrated AR technology for personalized offers and won the Best Presentation Award.',
+    technologies: ['Swift', 'AR Technology', 'iOS', 'Agile/Scrum'],
+    icon: '📱',
+    accentFrom: 'from-orange-400',
+    accentTo: 'to-pink-500',
+    codePreview: ['import ARKit', 'let scene =', '  ARCarView()', 'scene.showOffers()'],
+  },
+  {
+    id: 3,
+    title: 'Siemens Conference Management System',
+    category: 'fullstack',
+    description:
+      'Modernized a Siemens conference website by migrating from Jekyll to MkDocs and built an advanced CMS to streamline event workflows and optimize team productivity.',
+    technologies: ['MkDocs', 'Web Design', 'Content Management', 'Workflow Optimization'],
+    icon: '🌐',
+    accentFrom: 'from-teal-500',
+    accentTo: 'to-blue-500',
+    codePreview: ['migrate({', '  from: "Jekyll",', '  to: "MkDocs",', '  cms: true', '})'],
+  },
+  {
+    id: 4,
+    title: 'DevOps: FaaS with Spring Boot & GCP',
+    category: 'backend',
+    description:
+      'Bachelor seminar project on Function-as-a-Service using Spring Boot and Google Cloud Platform. Demonstrated serverless deployment, cloud automation, and modern backend architecture.',
+    technologies: ['Spring Boot', 'GCP', 'Serverless', 'Cloud Automation', 'DevOps'],
+    icon: '☁️',
+    accentFrom: 'from-indigo-500',
+    accentTo: 'to-blue-600',
+    codePreview: ['@FunctionBean', 'fun deploy(ctx) {', '  gcp.run(fn)', '  monitor()'],
+  },
+];
+
+const categories = [
+  { id: 'all', name: 'All Projects' },
+  { id: 'frontend', name: 'Frontend' },
+  { id: 'backend', name: 'Backend' },
+  { id: 'fullstack', name: 'Full Stack' },
+];
 
 export default function Projects() {
-  const [selectedCategory, setSelectedCategory] = useState("all");
-
-  const projects = [
-    {
-      id: 1,
-      title: "TUMApply - Inclusive Doctoral Application Platform",
-      category: "fullstack",
-      description:
-        "Bachelor's thesis project developing an inclusive web platform to replace TUM's current doctoral application portal. Focus on accessibility, transparency, and improved user experience for both professors and students.",
-      technologies: ["Full-Stack Web Development", "Accessibility", "UX Design", "User-Centered Design"],
-      image: "🎓",
-      link: "#",
-    },
-    {
-      id: 2,
-      title: "AR Car Rental Upselling App",
-      category: "frontend",
-      description:
-        "Collaborated with a team of 7 developers to build an Augmented Reality mobile application for SIXT car rental. Contributed to customer-centric features, integrated AR technology for personalized offers, and boosted in-app purchases. Worked in structured agile environment managing sprints and won Best Presentation Award.",
-      technologies: ["Swift", "AR Technology", "iOS", "Team Collaboration", "Agile/Scrum"],
-      image: "📱",
-      link: "#",
-    },
-    {
-      id: 3,
-      title: "Siemens Conference Management System",
-      category: "fullstack",
-      description:
-        "Modernized Siemens conference website by transitioning from Jekyll to stateless MkDocs design and developed an advanced content management system. Enhanced user experience, improved content accessibility, streamlined workflows, minimized administrative tasks, and optimized team productivity for faster event organization.",
-      technologies: ["MkDocs", "Web Design", "Content Management", "Workflow Optimization", "Team Collaboration"],
-      image: "🌐",
-      link: "#",
-    },
-    {
-      id: 5,
-      title: "DevOps: FaaS with Spring Boot & GCP",
-      category: "backend",
-      description:
-        "Bachelor seminar project on Function-as-a-Service using Spring Boot and Google Cloud Platform. Demonstrated serverless deployment, cloud automation, and modern backend architecture.",
-      technologies: ["Spring Boot", "GCP", "Serverless", "Cloud Automation", "DevOps"],
-      image: "☁️",
-      link: "#",
-    }
-  ];
+  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [expandedId, setExpandedId] = useState<number | null>(null);
 
   const filteredProjects =
-    selectedCategory === "all"
+    selectedCategory === 'all'
       ? projects
       : projects.filter((p) => p.category === selectedCategory);
-
-  const categories = [
-    { id: "all", name: "All Projects" },
-    { id: "frontend", name: "Frontend" },
-    { id: "backend", name: "Backend" },
-    { id: "fullstack", name: "Full Stack" },
-  ];
 
   return (
     <div className="max-w-6xl mx-auto">
       {/* Header */}
-      <section className="py-12 border-b border-gray-200 dark:border-gray-800">
-        <h1 className="text-5xl font-bold mb-4">Featured Projects</h1>
-        <p className="text-xl text-gray-600 dark:text-gray-400">
-          Showcase of recent projects I've built for various clients and
-          personal exploration
-        </p>
+      <section className="py-12 border-b border-slate-200 dark:border-slate-800">
+        <motion.h1
+          className="text-5xl font-bold mb-3 text-slate-900 dark:text-white"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+        >
+          Featured Projects
+        </motion.h1>
+        <motion.p
+          className="text-lg text-slate-500 dark:text-slate-400"
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+        >
+          A showcase of work built across internships, university projects, and personal exploration
+        </motion.p>
       </section>
 
       {/* Filter Buttons */}
-      <section className="py-8 flex gap-4 flex-wrap">
+      <section className="py-8 flex gap-3 flex-wrap">
         {categories.map((cat) => (
           <button
             key={cat.id}
             onClick={() => setSelectedCategory(cat.id)}
-            className={`px-6 py-2 rounded-lg font-medium transition-all ${
-              selectedCategory === cat.id
-                ? "bg-gradient-to-r from-blue-600 to-purple-500 text-white shadow-lg"
-                : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
-            }`}
+            className="relative px-5 py-2 rounded-xl font-medium text-sm transition-colors"
           >
-            {cat.name}
+            {selectedCategory === cat.id && (
+              <motion.span
+                className="absolute inset-0 bg-gradient-to-r from-blue-600 to-violet-500 rounded-xl"
+                layoutId="filter-bg"
+                transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+              />
+            )}
+            <span
+              className={`relative z-10 ${
+                selectedCategory === cat.id
+                  ? 'text-white'
+                  : 'text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400'
+              }`}
+            >
+              {cat.name}
+            </span>
           </button>
         ))}
       </section>
 
       {/* Projects Grid */}
-      <section className="py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {filteredProjects.map((project) => (
-            <div
-              key={project.id}
-              className="group rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden hover:shadow-xl transition-all hover:-translate-y-2"
-            >
-              {/* Project Image/Icon */}
-              <div className="h-48 bg-gradient-to-br from-blue-600/20 to-purple-500/20 dark:from-blue-600/10 dark:to-purple-500/10 flex items-center justify-center text-6xl group-hover:scale-110 transition-transform">
-                {project.image}
-              </div>
-
-              {/* Project Content */}
-              <div className="p-6">
-                <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">
-                  {project.title}
-                </h3>
-                <p className="text-gray-600 dark:text-gray-400 mb-4 text-sm leading-relaxed">
-                  {project.description}
-                </p>
-
-                {/* Technologies */}
-                <div className="flex gap-2 flex-wrap mb-6">
-                  {project.technologies.map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-xs rounded-full font-medium"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-                
-                {/* Commented out for now, can be re-enabled when real project links are available
-                <a
-                  href={project.link}
-                  className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 font-semibold hover:gap-3 transition-all group/link"
+      <section className="pb-12">
+        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <AnimatePresence mode="popLayout">
+            {filteredProjects.map((project) => {
+              const isExpanded = expandedId === project.id;
+              return (
+                <motion.div
+                  key={project.id}
+                  layout
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                  whileHover={{ y: -6 }}
+                  className="group rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden bg-white dark:bg-slate-800 hover:shadow-xl hover:shadow-slate-200/50 dark:hover:shadow-slate-900/50 transition-shadow"
                 >
-                  View Project
-                  <svg
-                    className="w-4 h-4 group-hover/link:translate-x-1 transition-transform"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
-                </a>
+                  {/* Card Header */}
+                  <div className={`h-44 bg-gradient-to-br ${project.accentFrom} ${project.accentTo} p-5 relative overflow-hidden`}>
+                    {/* Mock code preview */}
+                    <div className="absolute inset-0 p-5 font-mono text-xs text-white/60 leading-relaxed select-none">
+                      {project.codePreview.map((line, i) => (
+                        <div key={i}>{line}</div>
+                      ))}
+                    </div>
+                    {/* Emoji badge */}
+                    <div className="absolute top-4 right-4 w-10 h-10 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center text-xl">
+                      {project.icon}
+                    </div>
+                    {/* Category label */}
+                    <div className="absolute bottom-4 left-5 text-xs font-semibold text-white/80 uppercase tracking-wider">
+                      {project.category === 'fullstack' ? 'Full Stack' : project.category}
+                    </div>
+                  </div>
 
-                */}
-              </div>
-            </div>
-          ))}
-        </div>
+                  {/* Card Content */}
+                  <div className="p-5">
+                    <h3 className="text-base font-bold mb-2 text-slate-900 dark:text-white leading-snug">
+                      {project.title}
+                    </h3>
+                    <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-4">
+                      {project.description}
+                    </p>
 
-        {/* No Projects Message */}
+                    <div className="flex flex-wrap gap-1.5 mb-4">
+                      {project.technologies.map((tech) => (
+                        <motion.span
+                          key={tech}
+                          whileHover={{ scale: 1.06 }}
+                          className="px-2.5 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs rounded-full font-medium cursor-default"
+                        >
+                          {tech}
+                        </motion.span>
+                      ))}
+                    </div>
+
+                    {/* Expand/collapse button */}
+                    <button
+                      onClick={() => setExpandedId(isExpanded ? null : project.id)}
+                      className="text-sm text-blue-600 dark:text-blue-400 font-medium flex items-center gap-1 hover:gap-2 transition-all"
+                    >
+                      {isExpanded ? 'Show less' : 'View details'}
+                      <motion.span animate={{ rotate: isExpanded ? 90 : 0 }} className="block">
+                        →
+                      </motion.span>
+                    </button>
+
+                    <AnimatePresence>
+                      {isExpanded && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.3, ease: 'easeInOut' }}
+                          style={{ overflow: 'hidden' }}
+                        >
+                          <div className="pt-3 mt-3 border-t border-slate-200 dark:border-slate-700 text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+                            Project link coming soon. Feel free to{' '}
+                            <Link to="/contact" className="text-blue-600 dark:text-blue-400 underline underline-offset-2">
+                              reach out
+                            </Link>{' '}
+                            to learn more about this work.
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </AnimatePresence>
+        </motion.div>
+
         {filteredProjects.length === 0 && (
-          <div className="text-center py-12">
-            <p className="text-gray-600 dark:text-gray-400 text-lg">
-              No projects in this category yet.
-            </p>
+          <div className="text-center py-16 text-slate-400 dark:text-slate-500">
+            No projects in this category yet.
           </div>
         )}
       </section>
 
-      {/* Call to Action */}
-      <section className="py-20 border-t border-gray-200 dark:border-gray-800">
-        <div className="bg-gradient-to-r from-blue-600/10 to-purple-500/10 dark:from-blue-600/5 dark:to-purple-500/5 rounded-2xl p-12 md:p-16 border border-blue-200 dark:border-blue-900">
-          <div className="text-center max-w-2xl mx-auto">
-            <h2 className="text-3xl font-bold mb-4">
-              Interested in Collaborating?
-            </h2>
-            <p className="text-gray-600 dark:text-gray-400 mb-8">
-              Whether you have a project idea or want to discuss potential
-              opportunities, I'm always interested in hearing about new
-              challenges.
+      {/* CTA */}
+      <section className="py-16 border-t border-slate-200 dark:border-slate-800">
+        <AnimatedSection>
+          <div className="bg-gradient-to-br from-blue-600/10 to-violet-500/10 dark:from-blue-600/5 dark:to-violet-500/5 rounded-2xl p-12 border border-blue-200 dark:border-blue-900 text-center">
+            <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-white">Interested in Collaborating?</h2>
+            <p className="text-slate-500 dark:text-slate-400 mb-6 max-w-lg mx-auto text-sm">
+              Whether you have a project idea or want to discuss opportunities, I'm always interested in new challenges.
             </p>
             <Link
               to="/contact"
-              className="inline-block px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-500 text-white font-semibold rounded-lg hover:shadow-lg transform hover:scale-105 transition-all"
+              className="inline-block px-7 py-3 bg-gradient-to-r from-blue-600 to-violet-500 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-blue-500/25 transition-all hover:-translate-y-0.5"
             >
               Let's Talk
             </Link>
           </div>
-        </div>
+        </AnimatedSection>
       </section>
     </div>
   );
